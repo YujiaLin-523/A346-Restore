@@ -1,0 +1,24 @@
+common:
+  rgb_topic: "/camera/color/image_raw"
+  depth_topic: "/camera/aligned_depth_to_color/image_raw"
+  # This topic is optional now as we load intrinsics from yaml directly
+  info_topic: "/camera/color/camera_info" 
+
+paths:
+  # Path to the camera calibration file provided by user
+  calib_yaml: "ost.yaml" 
+  # Where to save/load the hand-eye transformation matrix
+  handeye_result: "T_tool_camera.txt"
+  # Directory to save raw calibration samples (optional)
+  samples_dir: "calibration_samples"
+
+calibration:
+  pattern_size: [11, 8]     # Inner corners (cols, rows)
+  square_size: 0.015        # Meters
+  marker_size: 0.10         # If using Aruco (future proofing)
+
+grasping:
+  safety_height: 0.12       # Meters above table
+  pre_grasp_z_offset: 0.10  # Meters above object
+  grasp_depth_offset: 0.0   # Adjust based on gripper finger length if needed
+  depth_roi_size: 5         # Pixel window size for robust depth (5x5)
